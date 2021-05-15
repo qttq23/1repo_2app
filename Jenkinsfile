@@ -1,28 +1,42 @@
 pipeline {
-    agent any
+	agent any
 
-    stages 
-    {
-    	stage('unit Test') {
-            steps {
-                echo 'unit Testing..'
-            }
-        }
+	stages 
+	{
+		stage('unit Test') {
+			steps {
+				echo 'unit Testing..'
+			}
+		}
 
-        stage('Build') {
-            steps {
-                echo 'Building..'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
-        }
-    }
+		stage('Build') {
+			steps {
+				echo 'Building..'
+			}
+		}
+		stage('Test') {
+			steps {
+				echo 'Testing..'
+			}
+		}
+		stage('Deploy') {
+			steps {
+				echo 'Deploying....'
+			}
+		}
+
+		stage('mobile') {
+			steps {
+				echo 'build for mobile'
+			}
+		}
+
+		stage('web') {
+			steps {
+				echo 'build for web'
+			}
+		}
+		
+
+	}
 }
