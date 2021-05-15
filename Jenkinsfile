@@ -45,10 +45,12 @@ pipeline {
 
 						}
 
+						// if(MOBILE_BUILD=='true'){}
+
 
 					}
 
-					when { env.MOBILE_BUILD 'true'}
+					when { expression { return env.MOBILE_BUILD == 'true'} }
 					echo "Changes found in mobile"
 					echo 'build for mobile'
 					sh 'echo 123'
