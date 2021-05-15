@@ -26,11 +26,13 @@ pipeline {
 		}
 
 		stage('mobile') {
+			environment { 
+				MOBILE_BUILD = 'true'
+			}
 			steps {
 				dir('mobile') {
 					script {
 
-						MOBILE_BUILD="true"
 
 						try {
 							def strCount = sh(returnStdout: true, script: "git diff --name-only ${env.GIT_COMMIT} ${GIT_PREVIOUS_SUCCESSFUL_COMMIT} | grep mobile | wc -l").trim()
@@ -44,11 +46,16 @@ pipeline {
 						}
 
 
-						if(MOBILE_BUILD=="true") {
-							echo "Changes found in mobile"
-							echo 'build for mobile'
-						}
 					}
+
+
+					if(MOBILE_BUILD=="true") {
+						echo "Changes found in mobile"
+						echo 'build for mobile'
+						sh 'echo 123'
+					}
+
+					
 				}
 
 
