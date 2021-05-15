@@ -27,7 +27,31 @@ pipeline {
 
 		stage('mobile') {
 			steps {
-				echo 'build for mobile'
+				dir('mobile') {
+					script {
+
+						MOBILE_BUILD="true"
+
+						try {
+							def strCount = sh(returnStdout: true, script: "git diff --name-only ${env.GIT_COMMIT} ${GIT_PREVIOUS_SUCCESSFUL_COMMIT} | grep servicelayer | wc -l").trim()
+							if(strCount=="0") {
+								MOBILE_BUILD="false"
+								echo "SKIP mobile"
+							}
+						}
+						catch (error) {
+
+						}
+
+
+						if(MOBILE_BUILD=="true") {
+							echo "Changes found in mobile"
+							echo 'build for mobile'
+						}
+					}
+				}
+
+
 			}
 		}
 
@@ -36,7 +60,7 @@ pipeline {
 				echo 'build for web'
 			}
 		}
-		
+
 
 	}
 }
