@@ -48,14 +48,13 @@ pipeline {
 
 					}
 
+					when { env.MOBILE_BUILD 'true'}
+					echo "Changes found in mobile"
+					echo 'build for mobile'
+					sh 'echo 123'
 
-					if(MOBILE_BUILD=="true") {
-						echo "Changes found in mobile"
-						echo 'build for mobile'
-						sh 'echo 123'
-					}
 
-					
+
 				}
 
 
