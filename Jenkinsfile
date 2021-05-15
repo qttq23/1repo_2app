@@ -48,7 +48,7 @@ pipeline {
 						if(MOBILE_BUILD=='true'){
 							echo "Changes found in mobile"
 							echo 'build for mobile'
-							sh 'echo readme.md'
+							sh 'cat readme.md'
 						}
 
 
