@@ -33,7 +33,7 @@ pipeline {
 						MOBILE_BUILD="true"
 
 						try {
-							def strCount = sh(returnStdout: true, script: "git diff --name-only ${env.GIT_COMMIT} ${GIT_PREVIOUS_SUCCESSFUL_COMMIT} | grep servicelayer | wc -l").trim()
+							def strCount = sh(returnStdout: true, script: "git diff --name-only ${env.GIT_COMMIT} ${GIT_PREVIOUS_SUCCESSFUL_COMMIT} | grep mobile | wc -l").trim()
 							if(strCount=="0") {
 								MOBILE_BUILD="false"
 								echo "SKIP mobile"
